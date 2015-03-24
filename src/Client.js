@@ -15,6 +15,11 @@ Client.prototype.download = function(torrent){ // return a complete 'file' (stri
 };
 // Piece requesting and serving:
 Client.prototype.askAboutAvailablePiecesFrom = function(peerUrl) { // return list of available shas
+  var result = {};
+
+  
+
+  return result;
 
 };
 Client.prototype.requestPiece = function(url, sha) { // return piece data
@@ -31,24 +36,28 @@ Client.prototype.respondTo = function(relativeUrl){ // respond to requests from 
 
   }
 };
-// 'File' read and write:
-Client.prototype.readTorrent = function(pathToTorrent) { // return torrent object
 
+// 'File' read and write:
+Client.prototype.readTorrent = function(pathToTorrent) {
+  var result = {};
+  result.trackerUrl = pathToTorrent.trackerUrl;
+  result.name       = pathToTorrent.name;
+  result.piecesSize = pathToTorrent.piecesSize;
+  result.shas       = pathToTorrent.shas;
+  return result;
 };
+
 Client.prototype.assemblePieces = function(torrentShas, pieces) { // return 'file' string
   var client = this; // to prevent loss of context
 
 };
 // Tracker interaction:
 Client.prototype.askForSeeds = function(trackerURL){ // return list of peerUrls
-
+  return this.get(trackerURL + '/seeds');
 };
 Client.prototype.registerAsPeer = function(trackerURL){ // add self to tracker
-
-
-
-
-}
+  return this.get(trackerURL + '/seed/add'); 
+};
 // Helper methods (no need to touch these, but you can use them.)
 Client.prototype.url = function() {
   return this.URL;
